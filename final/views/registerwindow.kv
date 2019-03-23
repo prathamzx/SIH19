@@ -1,0 +1,107 @@
+<RegisterWindow>:
+    name:"register"
+    id:reg_win
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Register"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: reg_win.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 180
+            Label:
+                id:inforegister
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:name_register
+                hint_text: "Name"
+                multiline: False
+                focus:True
+                on_text_validate: name_register.focus=True
+
+            TextInput:
+                id:email_register
+                hint_text: "Email"
+                multiline: False
+                on_text_validate: email_register.focus=True
+             
+            TextInput:
+                id:password_register
+                hint_text: "Password"
+                multiline: False
+                password:True
+                on_text_validate: root.completeregister()
+
+            TextInput:
+                id:role
+                hint_text: "Role"
+                multiline: False
+                on_text_validate: role.focus=True
+            
+            TextInput:
+                id:mobile
+                hint_text: "Mobile"
+                multiline: False
+                password:True
+                on_text_validate: root.completeregister()
+           
+
+
+        Button:
+            text: "Register"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.completeregister()
+
+        Button:
+            text: "Back"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="login"
+
+        Label:
+            height: 40

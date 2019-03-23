@@ -1,0 +1,550 @@
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import MapSource kivy.garden.mapview.MapSource
+#:import hex kivy.utils.get_color_from_hex
+ConnectingSigninRegister:
+    AddWindow:
+    EditWindow:
+    DelWindow:
+
+
+
+
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size:16
+
+<Toolbar@BoxLayout>:
+    size_hint_y: None
+    height: '48dp'
+    padding: '4dp'
+    spacing: '4dp'
+    canvas:
+        Color:
+            rgba: .2, .2, .2, .6
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<ggg>:
+    MapView:
+        id: mapview
+        lat: 20.9517
+        lon: 85.0985
+        zoom: 8
+
+        MapMarker:
+            lat: mapview.lat
+            lon: mapview.lon
+
+    Toolbar:
+        Label:
+            id: latitude
+            text: "{}".format(mapview.lon)
+        Label:
+            id: longitude
+            text: "{}".format(mapview.lat)
+        Button:
+            text:"OK"
+            on_release:root.get()
+
+<EditWindow>:
+    name:"editland"
+    id:edit_land
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "shan.jpg"
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Welcome Admin"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+    Label:
+        text:""
+        height:20
+    BoxLayout:
+        orientation:"horizontal"
+        BoxLayout:
+            orientation:"vertical"
+            padding: edit_land.space_x/4, 1
+            spacing:20
+
+            BoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                size_hint_y:None
+                height: 200
+                Label:
+                    id:infoEdit
+                    text:""
+                    markup:True
+                    size_hint_y:None
+                    height:40
+
+
+                TextInput:
+                    id:edit_land_name
+                    hint_text: "Old Name"
+                    multiline: False
+                    focus:True
+                    on_text_validate: edit_land_price.focus=True
+
+                TextInput:
+                    id:edit_land_price
+                    hint_text: "Old Price"
+                    multiline: False
+                    on_text_validate: edit_land_area.focus=True
+
+                TextInput:
+                    id:edit_land_area
+                    hint_text: "Old Area"
+                    multiline: False
+                    on_text_validate: edit_land_address.focus=True
+
+                TextInput:
+                    id:edit_land_address
+                    hint_text: "Old Address"
+                    multiline: False
+                    on_text_validate: root.editland()
+
+
+
+
+
+
+
+        BoxLayout:
+            orientation:"vertical"
+            padding: edit_land.space_x/4, 1
+            spacing:20
+
+            Label:
+                text:""
+                height:200
+            BoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                size_hint_y:None
+                height: 260
+                Label:
+                    id:infoedit2
+                    text:""
+                    markup:True
+                    size_hint_y:None
+                    height:40
+
+
+                TextInput:
+                    id:edit_land_name2
+                    hint_text: "New Name"
+                    multiline: False
+                    focus:True
+                    on_text_validate: edit_land_price2.focus=True
+
+                TextInput:
+                    id:edit_land_price2
+                    hint_text: "New Price"
+                    multiline: False
+                    on_text_validate: edit_land_area2.focus=True
+
+                TextInput:
+                    id:edit_land_area2
+                    hint_text: "New Area"
+                    multiline: False
+                    on_text_validate: edit_land_address2.focus=True
+
+                TextInput:
+                    id:edit_land_address2
+                    hint_text: "New Address"
+                    multiline: False
+                    on_text_validate: edit_land_description.focus=True
+
+                TextInput:
+                    id:edit_land_description
+                    hint_text: "Description"
+                    height:60
+                    multiline: False
+                    on_text_validate: root.editland()
+
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: edit_land.space_x/4, 1
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 80
+            Button:
+                text: "Set New Map Location"
+                size_hint_y:None
+                size_hint_x:None
+                width:150
+                height: 40
+                pos_hint:{'center_x':.5,'center_y':.8}
+                background_color: (.26,.45,.45,0.75)
+                background_normal: ""
+                on_release:root.editmap()
+            Button:
+                text: "Edit Land"
+                size_hint_y:None
+                size_hint_x:None
+                width:150
+                pos_hint:{'center_x':.5,'center_y':.8}
+                height: 40
+                background_color: (.06,.45,.45,1)
+                background_normal: ""
+                on_release:root.editland()
+
+
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text: "Add New Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="addland"
+
+        Button:
+            text: "Edit Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="editland"
+
+
+        Button:
+            text: "Delete Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="delland"
+
+
+
+
+
+<DelWindow>:
+    name:"delland"
+    id:del_land
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "shan.jpg"
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Welcome Admin"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: del_land.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 180
+            Label:
+                id:infoDel
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:del_land_name
+                hint_text: "Name"
+                multiline: False
+                focus:True
+                on_text_validate: del_land_price.focus=True
+
+            TextInput:
+                id:del_land_price
+                hint_text: "Price"
+                multiline: False
+                on_text_validate: del_land_area.focus=True
+
+            TextInput:
+                id:del_land_area
+                hint_text: "Area"
+                multiline: False
+                on_text_validate: del_land_address.focus=True
+
+            TextInput:
+                id:del_land_address
+                hint_text: "Address"
+                multiline: False
+                on_text_validate: root.delland()
+
+
+
+
+        Button:
+            text: "Delete Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.delland()
+
+
+
+        Label:
+            height: 40
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text: "Add New Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="addland"
+
+        Button:
+            text: "Edit Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="editland"
+
+
+        Button:
+            text: "Delete Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="delland"
+
+
+
+
+<AddWindow>:
+    name:"addland"
+    id:add_land
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "shan.jpg"
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Welcome Admin"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: add_land.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 300
+            Label:
+                id:infoAdd
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:add_land_name
+                hint_text: "Name"
+                multiline: False
+                focus:True
+                on_text_validate: add_land_price.focus=True
+
+            TextInput:
+                id:add_land_price
+                hint_text: "Price"
+                multiline: False
+                on_text_validate: add_land_area.focus=True
+
+            TextInput:
+                id:add_land_area
+                hint_text: "Area"
+                multiline: False
+                on_text_validate: add_land_address.focus=True
+
+            TextInput:
+                id:add_land_address
+                hint_text: "Address"
+                multiline: False
+                on_text_validate: add_land_description.focus=True
+
+            TextInput:
+                id:add_land_description
+                hint_text: "Description"
+                height:60
+                multiline: False
+
+            Button:
+                text: "Add On Map"
+                size_hint_y:None
+                height: 40
+                background_color: (.26,.45,.45,0.75)
+                background_normal: ""
+
+                on_release:root.openmap()
+
+
+        Button:
+            text: "Add New Land"
+            size_hint_y:None
+            height: 40
+            #background_color: (.06,.45,.45,1)
+            background_color: (.06,.45,.45,.75)
+            background_normal: ""
+            on_release:root.add_lands()
+
+
+
+        Label:
+            height: 40
+
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Button:
+            text: "Add New Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="addland"
+
+        Button:
+            text: "Edit Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="editland"
+
+
+        Button:
+            text: "Delete Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="delland"
+
+        Button:
+            text: "Logout!"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.logout()

@@ -1,0 +1,103 @@
+
+<AddWindow>:
+    name:"addland"
+    id:add_land
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Welcome Admin"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: add_land.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 180
+            Label:
+                id:infoAdd
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:add_land_name
+                hint_text: "Name"
+                multiline: False
+                focus:True
+                on_text_validate: add_land_price.focus=True
+
+            TextInput:
+                id:add_land_price
+                hint_text: "Price"
+                multiline: False
+                on_text_validate: add_land_area.focus=True
+
+            TextInput:
+                id:add_land_area
+                hint_text: "Area"
+                multiline: False
+                on_text_validate: add_land_address.focus=True
+
+            TextInput:
+                id:add_land_address
+                hint_text: "Address"
+                multiline: False
+                on_text_validate: root.addland()
+
+
+
+
+        Button:
+            text: "Add New Land"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.addland()
+
+        Button:
+            text: "Logout!"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="login"
+
+        Label:
+            height: 40
+
+

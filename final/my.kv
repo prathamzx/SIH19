@@ -1,0 +1,362 @@
+ConnectingSigninRegister:
+    AddWindow:
+    HomePage:
+    SigninWindow:
+    RegisterWindow:
+
+
+
+
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size:16
+
+
+<HomePage>:
+    name:"homepage"
+    orientation:"vertical"
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        height:500
+        width:250
+        pos_hint:{'center_x':.5,'center_y':.5}
+        size_hint_y:None
+        size_hint_x:None
+        orientation:"vertical"
+        GridLayout:
+            id: grid
+            cols: 1
+    Label:
+        color: 0,0,0,1
+        text:"Lands According to your req are :"
+        font_size :'20'
+        size_hint_y: None
+        pos_hint: {'left': 0.5, 'top': 1}
+
+
+
+    Button:
+        text: "Click Here"
+        size_hint_y:None
+        size_hint_x:None
+        height: 40
+        background_color: (.06,.45,.45,1)
+        background_normal: ""
+        pos_hint: {'left': 1, 'top': 1}
+        on_release: root.aff()
+
+    Button:
+        text: "Signout"
+        size_hint_y:None
+        size_hint_x:None
+        height: 40
+        background_color: (.06,.45,.45,1)
+        background_normal: ""
+        pos_hint: {'right': 1, 'top': 1}
+        on_release: app.root.current="login"
+
+
+    Image:
+        source:'msme.png'
+        keep_ratio: False
+        allow_stretch: True
+        opacity: 0.8
+        size_hint: 0.25, 0.25
+        pos_hint: {'center_x': .14, 'center_y': .14}
+
+
+
+
+<SigninWindow>:
+    name:"login"
+    id:main_win
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+        Color:
+            rgba:
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Squady Six Login Page"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: main_win.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 100
+            Label:
+                id:infologin
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+            TextInput:
+                focus: True
+                id:username_field
+                hint_text: "Username"
+                multiline: False
+                on_text_validate: pwd_field.focus=True
+
+            TextInput:
+                id:pwd_field
+                hint_text: "Password"
+                multiline: False
+                password:True
+                on_text_validate:root.validate_user();
+
+        Button:
+            text: "Sign in"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.validate_user()
+
+        Button:
+            text: "Create an Account"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release: app.root.current="register"
+
+        Label:
+            height: 40
+
+<AddWindow>:
+    name:"addland"
+    id:add_land
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Add-Land"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: add_land.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 180
+            Label:
+                id:infoAdd
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:land_name
+                hint_text: "Land"
+                multiline: False
+                focus:True
+                on_text_validate: email_register.focus=True
+
+            TextInput:
+                id:land_address
+                hint_text: "Address"
+                multiline: False
+                on_text_validate: username_register.focus=True
+
+
+            TextInput:
+                id:land_price
+                hint_text: "price"
+                multiline: False
+                on_text_validate: password_register.focus=True
+
+            TextInput:
+                id:area
+                hint_text: "Area"
+                multiline: False
+                on_text_validate: root.addland()
+
+
+        Button:
+            text: "ADD"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.addland()
+
+        Button:
+            text: "Back"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="login"
+
+        Label:
+            height: 40
+
+
+
+<RegisterWindow>:
+    name:"register"
+    id:reg_win
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Register"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        orientation:"vertical"
+        padding: reg_win.space_x, 10
+        spacing:20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y:None
+            height: 180
+            Label:
+                id:inforegister
+                text:""
+                markup:True
+                size_hint_y:None
+                height:20
+
+            TextInput:
+                id:name_register
+                hint_text: "Name"
+                multiline: False
+                focus:True
+                on_text_validate: email_register.focus=True
+
+            TextInput:
+                id:email_register
+                hint_text: "Email"
+                multiline: False
+                on_text_validate: username_register.focus=True
+
+
+            TextInput:
+                id:username_register
+                hint_text: "Username"
+                multiline: False
+                on_text_validate: password_register.focus=True
+
+            TextInput:
+                id:password_register
+                hint_text: "Password"
+                multiline: False
+                password:True
+                on_text_validate: root.completeregister()
+
+
+        Button:
+            text: "Register"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:root.completeregister()
+
+        Button:
+            text: "Back"
+            size_hint_y:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release:app.root.current="login"
+
+        Label:
+            height: 40

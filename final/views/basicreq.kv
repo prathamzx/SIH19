@@ -1,0 +1,101 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size: 16
+
+
+
+
+
+<BasicSearch>:
+    name: "BasicSearch"
+    id: main_win
+    orientation: "vertical"
+    spacing: 10
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        canvas.before:
+            Color:
+                rgba: (0.06,.45,.45,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Enter Basic Requirements"
+            bold: True
+            size_hint_x: .9
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: main_win.space_x, 10
+
+        #spacing: 10
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 30
+            size_hint_y: None
+            height: 280
+            width:150
+            Label:
+                id: info
+                height: 40
+                color: (1, 0, 0,1)
+            BoxLayout:
+                Label:
+                    color: (0.06,.45,.45,1)
+                    text: "Enter The Address You want Land in :                                                    "
+                    bold: True
+                    size_hint_x: .2
+                TextInput:
+                    id: area_field
+                    hint_text: "Enter the required Address "
+                    multiline: False
+                    focus: True
+
+
+            Label:
+                id: info
+                height: 20
+                color: (1, 0, 0,1)
+
+
+
+
+        Label:
+            id: sp
+            size_hint_y: None
+            height: 40
+
+        Button:
+            size_hint_y: None
+            height: 40
+            text: "Search"
+            background_color        : (0.06,.45,.45,1)
+            background_normal: ''
+            on_release: root.validate_user()
+        Label:
+            id: sp3
+
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+
+        Image:
+            size_hint_x: .1
+            source: 'logo.png'
+            size_hint: None, None
+            size: 150, 150

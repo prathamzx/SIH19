@@ -1,0 +1,28 @@
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:include force views/addwindow.kv
+#:include force  views/bookmarkscreen.kv
+#:include force  views/filterpage.kv
+#:include force  views/homepage.kv
+#:include force  views/registerwindow.kv
+#:include force  views/signinwindow.kv
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import MapSource kivy.garden.mapview.MapSource
+#:import hex kivy.utils.get_color_from_hex
+
+
+ConnectingSigninRegister:
+    transition: WipeTransition()
+    AddWindow:
+    EditWindow:
+    DelWindow:
+    HomePage:
+    FilterPage:
+    SigninWindow:
+    RegisterWindow:
+    BookmarkScreen:
+
+
+
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size:16

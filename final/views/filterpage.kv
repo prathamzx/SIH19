@@ -1,0 +1,194 @@
+<FilterPage>:
+    name:"filterpage"
+    orientation: "vertical"
+    spacing: 10
+    space_x:self.size[0]/3
+
+    canvas.before:
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'filter.jpg'
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        pos_hint:{'top':1}
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Filter Page"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+    Label:
+        height:200
+
+    BoxLayout:
+        id:filterarea
+        height: 490
+        size_hint_x:None
+        width:200
+        pos_hint:{'center_x':.5,'center_y':.5}
+        size_hint_y:None
+        orientation:"vertical"
+        spacing:30
+
+        TextInput:
+            id: area_filter
+            size_hint_y:None
+            height:30
+            hint_text: "Area"
+            multiline: False
+            focus: True
+            on_text_validate: address_filter.focus= True
+
+
+        TextInput:
+            id: address_filter
+            size_hint_y:None
+            height:30
+            hint_text: "Address"
+            multiline: False
+        Label:
+            height:100
+
+        Label:
+            color: (1,1,1,1)
+            text: "Max Price : "
+            bold: True
+
+        BoxLayout:
+
+            size_hint_y:None
+
+            Slider:
+                min: 1
+                size_hint_y:None
+                width:100
+                max: 10000000
+                step: 100
+                id: slider_id
+            Label:
+                color: (0.06,.45,.45,1)
+                text: str(slider_id.value)
+                bold: True
+                size_hint_x: .2
+
+        Button:
+            text:"Search"
+            height:40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release : root.filtersearchbutton()
+        Label:
+            height:200
+
+
+
+
+    BoxLayout:
+        orientation:'horizontal'
+
+        Button:
+            text: "Show Lands"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .5,'bottom':1}
+            on_release: root.showland()
+
+
+        Button:
+            text: "Prev"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': 0,'bottom':1}
+            on_release: root.prevland()
+
+        Button:
+            text: "Next"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .75,'bottom':1}
+            on_release: root.nextland()
+
+        Button:
+            text: "Bookmarks"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .25,'bottom':1}
+            on_release: app.current.root="bookmark"
+
+
+        Button:
+            text: "Search"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .25,'bottom':1}
+            on_release: root.gotofilter()
+
+        Button:
+            text: "Map"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .25,'bottom':1}
+            on_release: root.openmap()
+
+        Button:
+            text: "Auction"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .25,'bottom':1}
+            on_release:
+
+        Button:
+            text: "Clear /Home"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': 1,'bottom':1}
+            on_release: root.clearbutton()
+
+        Button:
+            text: "Signout"
+            size_hint_y:None
+#            size_hint_x:None
+            height: 40
+            background_color: (1,0,0,.75)
+            background_normal: ""
+            #pos_hint: {'left': 1,'bottom':1}
+            on_release: root.logout()

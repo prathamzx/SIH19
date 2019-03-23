@@ -1,0 +1,134 @@
+<Auction>:
+    name:"auction"
+    spacing: 10
+    space_x:self.size[0]/3
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'k.jpg'
+
+    BoxLayout:
+        spacing: 10
+        size_hint_y: 0.08
+        height: 50
+        pos_hint:{'top':1}
+
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Auction Page"
+            bold: True
+            size_hint_x: .9
+
+        FlatButton:
+            text: "x"
+            size_hint_x: .1
+            on_release:root.closebutton()
+
+
+    BoxLayout:
+        pos_hint:{'center_x':0.5,'center_y':.5}
+        size_hint_y:0.8
+        orientation:"vertical"
+
+        Accordion:
+            id:acc
+            orientation: 'vertical'
+
+    BoxLayout:
+        size_hint_y:0.08
+        orientation:'horizontal'
+        canvas.before:
+            Color:
+                rgba: (0,0,0,1)
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: "Prev"
+    #        size_hint_y:None
+    #        size_hint_x:None
+    #        height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': 0,'bottom':1}
+            on_release: root.prevland()
+
+        Button:
+            text: "Next"
+    #        size_hint_y:None
+    #        size_hint_x:None
+    #        height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .75,'bottom':1}
+            on_release: root.nextland()
+
+        Button:
+            id: btn
+            text: 'Sort'
+            size_hint_x: None
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            on_release: dropdown.open(self)
+
+            Widget:
+                on_parent: dropdown.dismiss()
+
+            DropDown:
+                id: dropdown
+                Button:
+                    id: droppricebutton
+                    text: 'Price'
+                    size_hint_y: None
+                    height: '48dp'
+                    background_color: (.06,.45,.45,1)
+                    background_normal: ""
+                    on_release: root.sort1()
+
+                Button:
+                    id: dropareabutton
+                    text: 'Area'
+                    size_hint_y: None
+                    background_color: (.06,.45,.45,1)
+                    background_normal: ""
+                    height: '48dp'
+                    on_release: root.sort2()
+
+        Button:
+            text: "Filter"
+    #        size_hint_y:None
+    #        size_hint_x:None
+    #        height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': .25,'bottom':1}
+            on_release: root.gotofilter()
+
+        Button:
+            text: "Clear/Home"
+    #        size_hint_y:None
+    #        size_hint_x:None
+    #        height: 40
+            background_color: (.06,.45,.45,1)
+            background_normal: ""
+            #pos_hint: {'left': 1,'bottom':1}
+            on_release: root.clearbutton()
+
+        Button:
+            text: "Signout"
+    #        size_hint_y:None
+    #        size_hint_x:None
+    #        height: 40
+            background_color: (1,0,0,.75)
+            background_normal: ""
+            #pos_hint: {'left': 1,'bottom':1}
+            on_release: root.logout()
